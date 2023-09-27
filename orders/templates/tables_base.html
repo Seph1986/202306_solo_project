@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} Pedidos {% endblock %}
+
+{% block content %}
+<div class="m-5">
+    <div class="row">
+        <div class="card p-3 shadow-sm">
+            <br>
+            <div class="d-flex mb-1">
+                {% block tables_title %}
+                
+                {% endblock %}
+            </div>
+            {% block table %}
+
+            {% endblock %}
+            <div class="row justify-content-center">
+                <a class="btn btn-warning col-6" href="{% url 'order_form' %}">Agregar pedido</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

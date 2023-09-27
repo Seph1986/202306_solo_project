@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %} Productos {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-around d-flex align-items-end">
+            <h2 class="mt-5">Productos</h2>
+            <a href="{% url 'product_form' %}" class="btn btn-success mb-2">Añadir Producto</a>
+        </div>
+        <div class="card p-3">
+            <table id="myTable" class="table table-striped" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in all_products %}
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>
+                            <a class="btn btn-warning btn-sm" href="{% url 'product_edit_form' id=product.id %}"
+                                title="edit link">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#delete{{product.id}}">
+                                <i class="bi bi-trash3-fill"></i>
+                            </button>
+                            <div class="modal fade" id="delete{{product.id}}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar el producto número: 
+                                                {{product.id}} </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Estas seguro de eliminar el producto: {{product.name}}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <a class="btn btn-danger"
+                                                href="{% url 'delete_product' id=product.id %}">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

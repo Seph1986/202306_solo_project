@@ -1,0 +1,38 @@
+{% extends "tables_base.html" %}
+
+{% block tables_title %} 
+<h3>Por entregar</h3>
+{% endblock %}
+
+{% block table %}
+<table id="myTable" class="table table-striped table-sm " style="width: 100%;">
+    <thead>
+        <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">°</th>
+            <th scope="col">Precio</th>
+            <th scope="col">P. Total</th>
+            <th scope="col">Entrega</th>
+            <th scope="col">Entregado</th>
+            <th scope="col">Docm.</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in to_deliver %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.product.name }}</td>
+            <td>{{ order.customer.first_name}} {{ order.customer.last_name}}</td>
+            <td>{{ order.amount }}</td>
+            <td>{{ order.price }}</td>
+            <td>{{ order.calculate_total_price }}</td>
+            <td>{{ order.deadline }}</td>
+            <td style="color: red">Por entregar</td>
+            <td>{{ order.bill }}</td>            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

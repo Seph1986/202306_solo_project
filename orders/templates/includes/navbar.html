@@ -1,0 +1,50 @@
+{% block content %}
+
+<div class="container">
+	<div class="row mt-4">
+		<nav class="navbar navbar-expand-lg bg-white card shadow-sm">
+			<div class="container">
+				<div class="container col-8">
+					<a class="navbar-brand" href="{% url 'index' %}">
+						{% load static %}
+						<img src="{% static 'img/resin_haus_image.svg' %}" alt="Logo" width="60" height="48"
+							class="d-inline-block align-text-middle">
+						<span class="btn btn-primary">Inicio</span>
+					</a>
+				</div>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse col-4" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item me-2">
+							<a class="btn btn-primary" aria-current="page" href="{% url 'customers' %}">Clientes</a>
+						</li>
+						<li class="nav-item">
+							<a class="btn btn-primary" aria-current="page" href="{% url 'products' %}">Productos</a>
+						</li>
+						<li>
+							<div class="btn-group" role="group">
+								<div class="ms-2">
+									<button type="button" class="btn btn-primary dropdown-toggle"
+										data-bs-toggle="dropdown" aria-expanded="false">
+										Balances
+									</button>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="{% url 'index' %}">Todos los pedidos</a></li>
+										<li><a class="dropdown-item" href="{% url 'delivered' %}">Entregados</a></li>
+										<li><a class="dropdown-item" href="{% url 'to_deliver' %}">Por Entregar</a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+</div>
+
+{% endblock %}

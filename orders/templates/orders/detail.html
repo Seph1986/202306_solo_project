@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %} Clientes {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mt-5">Pedido numero: {{ order.id }}</h2>
+        </div>
+        <div class="row">
+            <div class="col-8 card p-3 shadow-sm">
+                <div class="row">
+                    <div class="col-6">
+                        <h6>Producto:</h6>
+                        <p>{{order.product.name}}</p>
+                        <h6>Cliente:</h6>
+                        <p>{{order.customer.first_name}} {{ order.customer.last_name}}</p>
+                        <h6>Cantidad:</h6>
+                        <p>{{order.amount}}</p>
+                        <h6>Precio:</h6>
+                        <p>{{order.price}}</p>
+                        <h6>Precio total:</h6>
+                        <p>{{order.calculate_total_price}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h6 style="color: red">Observación:</h6>
+                        <p>{{order.observation}}</p>
+                        <h6>Fecha de entrega:</h6>
+                        <p>{{order.deadline }}</p>
+                        <h6>Factura numero:</h6>
+                        <p>{{order.bill}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

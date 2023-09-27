@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} Clientes {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mt-5">Editar Producto</h2>
+        </div>
+        <div class="row">
+            <div class="col-5 card p-3">
+                <form action="{% url 'product_edit_process' id=product.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                            value="{{product.name}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descripción:</label>
+                        <input type="text" class="form-control" id="description" name="description"
+                        value="{{product.description}}">
+                    </div>
+                    <button type="submit" class="btn btn-warning">Editar Producto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

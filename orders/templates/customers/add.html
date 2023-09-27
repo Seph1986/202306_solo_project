@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %} Clientes {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mt-5">Añadir Cliente</h2>
+        </div>
+        <div class="row">
+            <div class="col-8 card p-3 shadow-sm">
+                <form action="{% url 'process_customer' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">Apellido:</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone_number" class="form-label">Numero de telefono:</label>
+                                <input type="text" class="form-control" id="phone_number" name="phone_number" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="document" class="form-label">Documento/RUC:</label>
+                                <input type="text" class="form-control" id="document" name="document">
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Dirección:</label>
+                                <input type="text" class="form-control" id="address" name="address">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Añadir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

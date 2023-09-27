@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %} Clientes {% endblock %}
+
+{% block content %}
+<div class="container bg-body-tertiary col-10">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-around d-flex align-items-end">
+            <h2 class="mt-5">Clientes</h2>
+            <a href="{% url 'client_form' %}" class="btn btn-success mb-2">Añadir Cliente</a>
+        </div>
+        <div class="shadow-sm card p-3">
+            <table id="myTable" class="table table-striped" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Numero</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in all_customers %}
+                    <tr>
+                        <td>{{ customer.id }}</td>
+                        <td>{{ customer.first_name }}</td>
+                        <td>{{ customer.last_name }}</td>
+                        <td>{{ customer.phone_number }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>{{ customer.document }}</td>
+                        <td>{{ customer.address }}</td>
+                        <td>
+                            <a class="btn btn-warning btn-sm" href="{% url 'customer_edit_form' id=customer.id%}"
+                                title="edit link">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#delete{{customer.id}}">
+                                <i class="bi bi-trash3-fill"></i>
+                            </button>
+                            <div class="modal fade" id="delete{{customer.id}}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar usuario numero:
+                                                {{customer.id}} </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Estas seguro de eliminar al cliente: {{customer.first_name}}
+                                            {{customer.last_name}}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <a class="btn btn-danger"
+                                                href="{% url 'delete_customer' id=customer.id %}">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

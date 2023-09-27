@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %} Productos {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mt-5">Añadir Producto</h2>
+        </div>
+        <div class="row">
+            <div class="col-8 card p-3">
+                <form action="{% url 'process_product' %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <p>Descripción:</p>
+                        <textarea name="description" id="description" cols="42"
+                            rows="5" placeholder="Añadir descripción del producto"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Añadir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
